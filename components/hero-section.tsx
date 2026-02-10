@@ -6,6 +6,30 @@ import Image from 'next/image'
 import { TextEffect } from '@/components/ui/text-effect'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 import { HeroHeader } from './header'
+import { Variants } from 'framer-motion'
+
+
+export const heroVariants: {
+  item?: Variants;
+} = {
+  item: {
+    hidden: {
+      opacity: 0,
+      filter: "blur(10px)",
+      y: 20,
+    },
+    visible: {
+      opacity: 1,
+      filter: "blur(0px)",
+      y: 0,
+      transition: {
+        type: "spring",
+        bounce: 0.3,
+        duration: 0.8,
+      } as const,
+    }
+}
+}
 
 const transitionVariants = {
     item: {
@@ -108,7 +132,7 @@ export default function HeroSection() {
                                     speedSegment={0.3}
                                     as="h1"
                                     className="mx-auto mt-8 max-w-4xl text-balance text-5xl max-md:font-semibold md:text-7xl lg:mt-16 xl:text-[5.25rem]">
-                                    Modern Solutions for Customer Engagement
+                                    Mark Anthony Cerdeña
                                 </TextEffect>
                                 <TextEffect
                                     per="line"
@@ -117,7 +141,7 @@ export default function HeroSection() {
                                     delay={0.5}
                                     as="p"
                                     className="mx-auto mt-8 max-w-2xl text-balance text-lg">
-                                    Highly customizable components for building modern websites and applications that look and feel the way you mean it.
+                                    A Bachelor of Science in Computer Science Student in AMA Computer College Fairview Branch
                                 </TextEffect>
 
                                 <AnimatedGroup
@@ -175,7 +199,7 @@ export default function HeroSection() {
                                 <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
                                     <Image
                                         className="bg-background aspect-15/8 relative hidden rounded-2xl dark:block"
-                                        src="/mail2.webp"
+                                        src="/mail2-light.webp"
                                         alt="app screen"
                                         width="2700"
                                         height="1440"
@@ -207,9 +231,9 @@ export default function HeroSection() {
                             <div className="flex">
                                 <img
                                     className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/nvidia.svg"
+                                    src="https://ama.edu.ph/img/cropped-AMA-University-and-Colleges-main-logo.png"
                                     alt="Nvidia Logo"
-                                    height="20"
+                                    height="30"
                                     width="auto"
                                 />
                             </div>
@@ -217,54 +241,54 @@ export default function HeroSection() {
                             <div className="flex">
                                 <img
                                     className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/column.svg"
+                                    src="https://cdn.browsercam.com/edu.sti.elms.app.android-header.png"
                                     alt="Column Logo"
-                                    height="16"
+                                    height="30"
                                     width="auto"
                                 />
                             </div>
                             <div className="flex">
                                 <img
                                     className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/github.svg"
+                                    src="https://th.bing.com/th/id/R.ca6237cf1f726bcb9f0f909fcdd9b2fe?rik=xyHFd62FwNuwlg&riu=http%3a%2f%2ftesdatrainingcourses.com%2fwp-content%2fuploads%2f2015%2f02%2flcc.jpg&ehk=wWZqwISIDQngJVlkSmkicZEdiPkXbQ8pWwH7o8%2bKXWg%3d&risl=&pid=ImgRaw&r=0"
                                     alt="GitHub Logo"
-                                    height="16"
+                                    height="30"
                                     width="auto"
                                 />
                             </div>
                             <div className="flex">
                                 <img
                                     className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/nike.svg"
+                                    src="https://tse2.mm.bing.net/th/id/OIP.r_SMHOeRbmUyMdTaozYhjQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
                                     alt="Nike Logo"
-                                    height="20"
+                                    height="30"
                                     width="auto"
                                 />
                             </div>
                             <div className="flex">
                                 <img
                                     className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
+                                    src="https://tse2.mm.bing.net/th/id/OIP.r_SMHOeRbmUyMdTaozYhjQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
                                     alt="Lemon Squeezy Logo"
-                                    height="20"
+                                    height="30"
                                     width="auto"
                                 />
                             </div>
                             <div className="flex">
                                 <img
                                     className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/laravel.svg"
+                                    src="https://th.bing.com/th/id/R.ca6237cf1f726bcb9f0f909fcdd9b2fe?rik=xyHFd62FwNuwlg&riu=http%3a%2f%2ftesdatrainingcourses.com%2fwp-content%2fuploads%2f2015%2f02%2flcc.jpg&ehk=wWZqwISIDQngJVlkSmkicZEdiPkXbQ8pWwH7o8%2bKXWg%3d&risl=&pid=ImgRaw&r=0"
                                     alt="Laravel Logo"
-                                    height="16"
+                                    height="30"
                                     width="auto"
                                 />
                             </div>
                             <div className="flex">
                                 <img
                                     className="mx-auto h-7 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/lilly.svg"
+                                    src="https://cdn.browsercam.com/edu.sti.elms.app.android-header.png"
                                     alt="Lilly Logo"
-                                    height="28"
+                                    height="30"
                                     width="auto"
                                 />
                             </div>
@@ -272,7 +296,7 @@ export default function HeroSection() {
                             <div className="flex">
                                 <img
                                     className="mx-auto h-6 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/openai.svg"
+                                    src="https://ama.edu.ph/img/cropped-AMA-University-and-Colleges-main-logo.png"
                                     alt="OpenAI Logo"
                                     height="24"
                                     width="auto"
