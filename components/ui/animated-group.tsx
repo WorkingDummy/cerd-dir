@@ -1,6 +1,6 @@
 'use client';
-import { ReactNode } from 'react';
-import { motion, Variants } from 'motion/react';
+import { ReactNode, useMemo, Children, ElementType } from 'react';
+import { motion, Variants } from 'framer-motion'; 
 import React from 'react';
 
 export type PresetType =
@@ -23,8 +23,8 @@ export type AnimatedGroupProps = {
     item?: Variants;
   };
   preset?: PresetType;
-  as?: React.ElementType;
-  asChild?: React.ElementType;
+  as?: ElementType;
+  asChild?: ElementType;
 };
 
 const defaultContainerVariants: Variants = {
@@ -95,9 +95,17 @@ const presetVariants: Record<PresetType, Variants> = {
   },
 };
 
-const addDefaultVariants = (variants: Variants) => ({
-  hidden: { ...defaultItemVariants.hidden, ...variants.hidden },
-  visible: { ...defaultItemVariants.visible, ...variants.visible },
+// Fixed helper: Explicitly cast parts to object to allow spreading
+const addDefaultVariants = (variants: Variants): Variants => ({
+  ...variants,
+  hidden: { 
+    ...(defaultItemVariants.hidden as object), 
+    ...(variants.hidden as object) 
+  },
+  visible: { 
+    ...(defaultItemVariants.visible as object), 
+    ...(variants.visible as object) 
+  },
 });
 
 function AnimatedGroup({
@@ -108,19 +116,23 @@ function AnimatedGroup({
   as = 'div',
   asChild = 'div',
 }: AnimatedGroupProps) {
-  const selectedVariants = {
+  const selectedVariants = useMemo(() => ({
     item: addDefaultVariants(preset ? presetVariants[preset] : {}),
     container: addDefaultVariants(defaultContainerVariants),
-  };
-  const containerVariants = variants?.container || selectedVariants.container;
-  const itemVariants = variants?.item || selectedVariants.item;
+  }), [preset]);
 
-  const MotionComponent = React.useMemo(
-    () => motion.create(as as keyof JSX.IntrinsicElements),
+  // FIX FOR LINE 137: Force the type to Variants
+  const containerVariants = (variants?.container || selectedVariants.container) as Variants;
+  const itemVariants = (variants?.item || selectedVariants.item) as Variants;
+
+  // FIX FOR LINE 124 & 128: Cast as any to bypass the ElementType/IntrinsicElements conflict
+  const MotionComponent = useMemo(
+    () => (motion as any).create(as),
     [as]
   );
-  const MotionChild = React.useMemo(
-    () => motion.create(asChild as keyof JSX.IntrinsicElements),
+  
+  const MotionChild = useMemo(
+    () => (motion as any).create(asChild),
     [asChild]
   );
 
@@ -131,7 +143,7 @@ function AnimatedGroup({
       variants={containerVariants}
       className={className}
     >
-      {React.Children.map(children, (child, index) => (
+      {Children.map(children, (child, index) => (
         <MotionChild key={index} variants={itemVariants}>
           {child}
         </MotionChild>

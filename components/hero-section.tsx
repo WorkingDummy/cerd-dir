@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react'
 import Link from 'next/link'
 import { ArrowRight, ChevronRight } from 'lucide-react'
@@ -8,30 +10,29 @@ import { AnimatedGroup } from '@/components/ui/animated-group'
 import { HeroHeader } from './header'
 import { Variants } from 'framer-motion'
 
-
-export const heroVariants: {
-  item?: Variants;
-} = {
-  item: {
-    hidden: {
-      opacity: 0,
-      filter: "blur(10px)",
-      y: 20,
-    },
-    visible: {
-      opacity: 1,
-      filter: "blur(0px)",
-      y: 0,
-      transition: {
-        type: "spring",
-        bounce: 0.3,
-        duration: 0.8,
-      } as const,
+// 1. Fixed the syntax error (mismatched braces) and added explicit typing
+export const heroVariants: { item: Variants } = {
+    item: {
+        hidden: {
+            opacity: 0,
+            filter: "blur(10px)",
+            y: 20,
+        },
+        visible: {
+            opacity: 1,
+            filter: "blur(0px)",
+            y: 0,
+            transition: {
+                type: "spring",
+                bounce: 0.3,
+                duration: 0.8,
+            },
+        },
     }
-}
-}
+};
 
-const transitionVariants = {
+// 2. Added explicit typing to prevent the "TargetAndTransition" error
+const transitionVariants: { item: Variants } = {
     item: {
         hidden: {
             opacity: 0,
@@ -49,13 +50,14 @@ const transitionVariants = {
             },
         },
     },
-}
+};
 
 export default function HeroSection() {
     return (
         <>
             <HeroHeader />
             <main className="overflow-hidden">
+                {/* Background Decor */}
                 <div
                     aria-hidden
                     className="absolute inset-0 isolate hidden opacity-65 contain-strict lg:block">
@@ -63,8 +65,10 @@ export default function HeroSection() {
                     <div className="h-320 absolute left-0 top-0 w-60 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] [translate:5%_-50%]" />
                     <div className="h-320 -translate-y-87.5 absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
                 </div>
+
                 <section>
                     <div className="relative pt-24 md:pt-36">
+                        {/* 3. Passing variants as a structured object */}
                         <AnimatedGroup
                             variants={{
                                 container: {
@@ -74,29 +78,15 @@ export default function HeroSection() {
                                         },
                                     },
                                 },
-                                item: {
-                                    hidden: {
-                                        opacity: 0,
-                                        y: 20,
-                                    },
-                                    visible: {
-                                        opacity: 1,
-                                        y: 0,
-                                        transition: {
-                                            type: 'spring',
-                                            bounce: 0.3,
-                                            duration: 2,
-                                        },
-                                    },
-                                },
+                                item: heroVariants.item
                             }}
                             className="mask-b-from-35% mask-b-to-90% absolute inset-0 top-56 -z-20 lg:top-32">
                             <Image
                                 src="https://ik.imagekit.io/lrigu76hy/tailark/night-background.jpg?updatedAt=1745733451120"
                                 alt="background"
-                                className="hidden size-full dark:block"
-                                width="3276"
-                                height="4095"
+                                className="hidden size-full dark:block object-cover"
+                                width={3276}
+                                height={4095}
                             />
                         </AnimatedGroup>
 
@@ -154,12 +144,10 @@ export default function HeroSection() {
                                                 },
                                             },
                                         },
-                                        ...transitionVariants,
+                                        item: transitionVariants.item,
                                     }}
                                     className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row">
-                                    <div
-                                        key={1}
-                                        className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5">
+                                    <div className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5">
                                         <Button
                                             asChild
                                             size="lg"
@@ -170,7 +158,6 @@ export default function HeroSection() {
                                         </Button>
                                     </div>
                                     <Button
-                                        key={2}
                                         asChild
                                         size="lg"
                                         variant="ghost"
@@ -183,6 +170,7 @@ export default function HeroSection() {
                             </div>
                         </div>
 
+                        {/* App Screenshot Section */}
                         <AnimatedGroup
                             variants={{
                                 container: {
@@ -193,7 +181,7 @@ export default function HeroSection() {
                                         },
                                     },
                                 },
-                                ...transitionVariants,
+                                item: transitionVariants.item,
                             }}>
                             <div className="mask-b-from-55% relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
                                 <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
@@ -201,21 +189,23 @@ export default function HeroSection() {
                                         className="bg-background aspect-15/8 relative hidden rounded-2xl dark:block"
                                         src="/mail2-light.webp"
                                         alt="app screen"
-                                        width="2700"
-                                        height="1440"
+                                        width={2700}
+                                        height={1440}
                                     />
                                     <Image
                                         className="z-2 border-border/25 aspect-15/8 relative rounded-2xl border dark:hidden"
                                         src="/mail2-light.webp"
                                         alt="app screen"
-                                        width="2700"
-                                        height="1440"
+                                        width={2700}
+                                        height={1440}
                                     />
                                 </div>
                             </div>
                         </AnimatedGroup>
                     </div>
                 </section>
+
+                {/* Customers Section */}
                 <section className="bg-background pb-16 pt-16 md:pb-32">
                     <div className="group relative m-auto max-w-5xl px-6">
                         <div className="absolute inset-0 z-10 flex scale-95 items-center justify-center opacity-0 duration-500 group-hover:scale-100 group-hover:opacity-100">
@@ -223,85 +213,24 @@ export default function HeroSection() {
                                 href="/"
                                 className="block text-sm duration-150 hover:opacity-75">
                                 <span> Meet Our Customers</span>
-
                                 <ChevronRight className="ml-1 inline-block size-3" />
                             </Link>
                         </div>
                         <div className="group-hover:blur-xs mx-auto mt-12 grid max-w-2xl grid-cols-4 gap-x-12 gap-y-8 transition-all duration-500 group-hover:opacity-50 sm:gap-x-16 sm:gap-y-14">
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://ama.edu.ph/img/cropped-AMA-University-and-Colleges-main-logo.png"
-                                    alt="Nvidia Logo"
-                                    height="30"
-                                    width="auto"
-                                />
-                            </div>
-
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://cdn.browsercam.com/edu.sti.elms.app.android-header.png"
-                                    alt="Column Logo"
-                                    height="30"
-                                    width="auto"
-                                />
-                            </div>
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://th.bing.com/th/id/R.ca6237cf1f726bcb9f0f909fcdd9b2fe?rik=xyHFd62FwNuwlg&riu=http%3a%2f%2ftesdatrainingcourses.com%2fwp-content%2fuploads%2f2015%2f02%2flcc.jpg&ehk=wWZqwISIDQngJVlkSmkicZEdiPkXbQ8pWwH7o8%2bKXWg%3d&risl=&pid=ImgRaw&r=0"
-                                    alt="GitHub Logo"
-                                    height="30"
-                                    width="auto"
-                                />
-                            </div>
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://tse2.mm.bing.net/th/id/OIP.r_SMHOeRbmUyMdTaozYhjQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
-                                    alt="Nike Logo"
-                                    height="30"
-                                    width="auto"
-                                />
-                            </div>
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://tse2.mm.bing.net/th/id/OIP.r_SMHOeRbmUyMdTaozYhjQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
-                                    alt="Lemon Squeezy Logo"
-                                    height="30"
-                                    width="auto"
-                                />
-                            </div>
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://th.bing.com/th/id/R.ca6237cf1f726bcb9f0f909fcdd9b2fe?rik=xyHFd62FwNuwlg&riu=http%3a%2f%2ftesdatrainingcourses.com%2fwp-content%2fuploads%2f2015%2f02%2flcc.jpg&ehk=wWZqwISIDQngJVlkSmkicZEdiPkXbQ8pWwH7o8%2bKXWg%3d&risl=&pid=ImgRaw&r=0"
-                                    alt="Laravel Logo"
-                                    height="30"
-                                    width="auto"
-                                />
-                            </div>
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-7 w-fit dark:invert"
-                                    src="https://cdn.browsercam.com/edu.sti.elms.app.android-header.png"
-                                    alt="Lilly Logo"
-                                    height="30"
-                                    width="auto"
-                                />
-                            </div>
-
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-6 w-fit dark:invert"
-                                    src="https://ama.edu.ph/img/cropped-AMA-University-and-Colleges-main-logo.png"
-                                    alt="OpenAI Logo"
-                                    height="24"
-                                    width="auto"
-                                />
-                            </div>
+                            {[
+                                "https://ama.edu.ph/img/cropped-AMA-University-and-Colleges-main-logo.png",
+                                "https://cdn.browsercam.com/edu.sti.elms.app.android-header.png",
+                                "https://th.bing.com/th/id/R.ca6237cf1f726bcb9f0f909fcdd9b2fe?rik=xyHFd62FwNuwlg&riu=http%3a%2f%2ftesdatrainingcourses.com%2fwp-content%2fuploads%2f2015%2f02%2flcc.jpg&ehk=wWZqwISIDQngJVlkSmkicZEdiPkXbQ8pWwH7o8%2bKXWg%3d&risl=&pid=ImgRaw&r=0",
+                                "https://tse2.mm.bing.net/th/id/OIP.r_SMHOeRbmUyMdTaozYhjQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
+                            ].map((logo, i) => (
+                                <div key={i} className="flex">
+                                    <img
+                                        className="mx-auto h-5 w-fit dark:invert"
+                                        src={logo}
+                                        alt="Partner Logo"
+                                    />
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>
