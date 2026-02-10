@@ -12,7 +12,7 @@ const members = [
     {
         name: 'La Concepcion College',
         role: 'High School',
-        avatar: 'https://th.bing.com/th/id/R.ca6237cf1f726bcb9f0f909fcdd9b2fe?rik=xyHFd62FwNuwlg&riu=http%3a%2f%2ftesdatrainingcourses.com%2fwp-content%2fuploads%2f2015%2f02%2flcc.jpg&ehk=wWZqwISIDQngJVlkSmkicZEdiPkXbQ8pWwH7o8%2bKXWg%3d&risl=&pid=ImgRaw&r=0',
+        avatar: 'https://laconcepcioncollege.com/wp-content/uploads/2010/12/new-logo1.jpg?w=150',
     },
     {
         name: 'Tungkong Mangga Elementary School',
