@@ -31,7 +31,7 @@ export default function MiddleParallax() {
         className="absolute inset-0 w-full h-[130%] -top-[10%]"
       >
         <Image
-          src="/parallax-bgv2.webp" // Local path starting from the public folder
+          src="/Parallax-bgv2.webp" // Local path starting from the public folder
           alt="Scrolling background"
           fill
           className="object-cover"
@@ -42,7 +42,7 @@ export default function MiddleParallax() {
       <div className="relative z-10 flex h-full items-center justify-center">
         <div className="bg-white/10 backdrop-blur-md p-10 rounded-2xl border border-white/20">
           <h2 className="text-5xl font-bold text-white text-center">
-            Scrolling Capybara
+            Profile
           </h2>
         </div>
       </div>

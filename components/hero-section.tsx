@@ -84,17 +84,6 @@ export default function HeroSection() {
 
                         <div className="mx-auto max-w-7xl px-6">
                             <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
-                                <AnimatedGroup variants={transitionVariants}>
-                                    <Link href="#link" className="bg-muted hover:bg-slate-100 dark:hover:bg-slate-800 group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md transition-colors duration-300 dark:border-white/5">
-                                        <span className="text-sm font-medium">Introducing Support for AI Models</span>
-                                        <div className="bg-white dark:bg-slate-900 size-6 overflow-hidden rounded-full border border-slate-200 dark:border-white/10">
-                                            <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
-                                                <span className="flex size-6"><ArrowRight className="m-auto size-3" /></span>
-                                                <span className="flex size-6"><ArrowRight className="m-auto size-3" /></span>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </AnimatedGroup>
 
                                 <TextEffect 
                                     preset="fade-in-blur" 
@@ -115,21 +104,6 @@ export default function HeroSection() {
                                 >
                                     A Bachelor of Science in Computer Science Student in AMA Computer College Fairview Branch
                                 </TextEffect>
-
-                                <AnimatedGroup
-                                    variants={{
-                                        container: { visible: { transition: { staggerChildren: 0.05, delayChildren: 0.75 } } },
-                                        item: transitionVariants.item,
-                                    }}
-                                    className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row"
-                                >
-                                    <Button asChild size="lg" className="rounded-xl px-8 text-base shadow-xl">
-                                        <Link href="#link">Start Building</Link>
-                                    </Button>
-                                    <Button asChild size="lg" variant="outline" className="rounded-xl px-8 text-base">
-                                        <Link href="#link">Request a demo</Link>
-                                    </Button>
-                                </AnimatedGroup>
                             </div>
                         </div>
                     </div>
